@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Antrian M/M/2</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Tambahkan pustaka MathJax -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Model Antrian M/M/2</h1>
+        <form method="POST" id="form-antrian">
+            <label for="waktu_kedatangan">Waktu Antar Kedatangan (menit):</label>
+            <input type="text" id="waktu_kedatangan" name="waktu_kedatangan" required>
+
+            <label for="waktu_pelayanan">Waktu Pelayanan per Pelayan (menit):</label>
+            <input type="text" id="waktu_pelayanan" name="waktu_pelayanan" required>
+
+            <button type="submit">Hitung</button>
+        </form>
+
+        <div class="output-container" style="display: none;">
+            <h2>Hasil Perhitungan:</h2>
+            <ul>
+                <li>Laju Kedatangan (\(\lambda\)):  \[ 
+                    \lambda = \frac{1}{\text{waktu antar kedatangan}} = {{ laju_kedatangan }}\]</li>
+                <li>Laju Pelayanan (\(\mu\)): \[ 
+                    \mu = \frac{1}{\text{waktu pelayanan per pelayan}} = {{ laju_pelayanan }}
+                    \] </li>
+                <li>Pemanfaatan Pelayan (\(\rho\)): \[
+                    \rho = \frac{\lambda}{2\mu} =  {{ rho }} 
+                    \]</li>
+                <li>Waktu Rata-rata dalam Sistem (\(W\)): \[ 
+                    W = \frac{1}{\mu - \frac{\lambda}{2}} 
+                    =  {{ w }} menit\] </li>
+                <li>Waktu Rata-rata dalam Antrian (\(W_q\)):\[ 
+                    W_q = \frac{\lambda^2}{2 \mu \left( \mu - \frac{\lambda}{2} \right)} =  {{ wq }} menit
+                    \]</li>
+            </ul>
+            <button type="reset" id="resetButton">Reset</button>
+        </div>
+
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
